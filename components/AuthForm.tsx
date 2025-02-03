@@ -16,6 +16,8 @@ import Link from 'next/link'
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
 import ImageUpload from "./ImageUpload";
 import { Path } from "react-hook-form";
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 interface Props<T extends FieldValues> {
   type: 'SIGN_IN' | 'SIGN_UP';
@@ -26,6 +28,7 @@ interface Props<T extends FieldValues> {
 
 const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit }: Props<T>) => {
   const isSignIn = type === 'SIGN_IN';
+  const router = useRouter()
   // 1. Define your form.
   const form: UseFormReturn<T> = useForm({
     resolver: zodResolver(schema),
@@ -35,6 +38,21 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
   const handleSubmit: SubmitHandler<T> = async (data) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+    const result = await onSubmit(data)
+
+    if (result.success) {
+      toast({
+        title: "Success",
+        description: isSignIn ? "Welcome to Bookshelf" : "Registration succeded"
+      })
+      router.push("/")
+    } else {
+      toast({
+        title: `Error ${isSignIn ? "signing in" : "signing up"}`,
+        description: result.error ?? "An error occurred.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
