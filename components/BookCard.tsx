@@ -5,7 +5,7 @@ import BookCover from "@/components/BookCover";
 import Link from 'next/link';
 import Image from 'next/image';
 
-const BookCard = ({id, title, genre, color, cover, isLoanedBook = false}: IBook) => {
+const BookCard = ({id, title, genre, color, cover, isLoanedBook = false}: Book) => {
   return (  
     <li className={cn(isLoanedBook && "xs:w-52 w-full")}>
       <Link href={`/books/${id}`} className={cn(isLoanedBook && "w-full flex flex-col items-center")}>

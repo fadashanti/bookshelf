@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import BookCover from "@/components/BookCover";
 
-const BookOverview = ({ title, author, genre, rating, total_copies, available_copies, description, color, cover  }: IBook) => {
+const BookOverview = ({ title, author, genre, rating, total_copies, available_copies, description, color, cover  }: Book) => {
   return (
     <section className="book-overview">
       <div className="flex flex-1 flex-col gap-5">
