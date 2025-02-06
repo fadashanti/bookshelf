@@ -1,5 +1,4 @@
-import { uuid, varchar, integer, text, date, boolean, pgTable, pgEnum, timestamp } from "drizzle-orm/pg-core";
-import { University } from "lucide-react";
+import { uuid, varchar, integer, text, date, pgTable, pgEnum, timestamp } from "drizzle-orm/pg-core";
 
 export const STATUS_ENUM = pgEnum("status", ["PENDING", "APPROVED", "REJECTED"]);
 export const ROLE_ENUM = pgEnum("role", ["USER", "ADMIN"]);
