@@ -30,5 +30,5 @@ const BookCard = ({id, title, genre, color, cover, isLoanedBook = false}: Book) 
     </li>
   );
 }
- 
+
 export default BookCard;
