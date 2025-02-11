@@ -20,7 +20,7 @@ interface Props {
   coverImage: string;
 }
 
-const BookCover = ({ variant = "regular", className, coverColor = "#012B48", coverImage = "https://placehold.co/400x600.png" }: Props) => {
+const BookCover = ({ variant = "medium", className, coverColor = "#012B48", coverImage = "https://placehold.co/400x600.png" }: Props) => {
   return (
     <div className={cn("relative transition-all duration-300", variantStyles[variant], className)}>
       <BookCoverSvg coverColor={coverColor}/>

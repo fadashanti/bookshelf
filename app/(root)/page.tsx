@@ -10,7 +10,7 @@ const Home = async () => {
 
   return (
     <>
-      <BookOverview {...sampleBooks[7]}/>
+      <BookOverview {...sampleBooks[3]}/>
 
       <BookList
         title="Latest Books"
