@@ -12,6 +12,7 @@ interface Props {
   placeholder: string;
   folder: string;
   variant: "dark" | "light";
+  value?: string
   onFileChange: (filePath: string) => void;
 }
 
@@ -49,9 +50,9 @@ const authenticator = async () => {
   }
 }
 
-const FileUpload = ({ type, accept, placeholder, folder, variant, onFileChange }: Props) => {
+const FileUpload = ({ type, accept, placeholder, folder, variant, value, onFileChange }: Props) => {
   const ikUploadRef = useRef(null);
-  const [file, setFile] = useState<{ filePath: string } | null>(null);
+  const [file, setFile] = useState<{ filePath: string | null }>({filePath: value ?? null});
   const { toast } = useToast();
   const [progress, setProgress] = useState(0);
 
@@ -162,13 +163,16 @@ const FileUpload = ({ type, accept, placeholder, folder, variant, onFileChange }
       {file && (
         type === "image" ? (
           <IKImage
+            // @ts-ignore
             alt={file.filePath}
+            // @ts-ignore
             path={file.filePath}
             width={500}
             height={500}
           />
         ) : type === "video" ? (
           <IKVideo
+            // @ts-ignore
             path={file.filePath}
             controls={true}
             className="h-96 w-full rounded-xl"
